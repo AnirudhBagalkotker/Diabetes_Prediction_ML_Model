@@ -22,7 +22,7 @@ Open the Terminal and type the command
 ```
 sudo apt install python3
 ```
-for Ubuntu Based Distros
+for Ubuntu-based Distros
 
 ```
 sudo pacman -S python3
@@ -32,7 +32,7 @@ for Arch-based Distros
 ```
 sudo dnf install python3
 ```
-for Fedora Based Distros
+for Fedora-based Distros
 
 ***2. Pandas Module must be installed.***
 Open your terminal and type the command
