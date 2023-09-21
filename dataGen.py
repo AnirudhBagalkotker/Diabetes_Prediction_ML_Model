@@ -61,15 +61,25 @@ print("\n")
 print(synthetic_data.info())
 print("\n")
 
-# Calculate and visualize correlations between numeric columns
-correlation_matrix = synthetic_data.corr()
+# Calculate and visualize correlations between numeric columns using cluster maps
 plt.figure(figsize=(10, 6))
-sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm")
+sns.heatmap(synthetic_data.corr(), cmap="RdBu", center=0, cbar=True, annot=True)
+sns.clustermap(synthetic_data.corr(), cmap="RdBu", center=0, cbar=True, annot=True)
+plt.show()
+
+plt.figure(figsize=(10, 10))
+sns.boxplot(x="Outcome", y="Glucose", data=synthetic_data)
+plt.xlabel("Outcome")
+plt.ylabel("Glucose")
 plt.show()
 
 # Evaluating the quality of the synthetic data
 quality_report = evaluate_quality(real_data, synthetic_data, metadata)
 quality_report.get_visualization("Column Shapes")
+
+# Save the Synthetic Data after preprocessing and evaluation
+synthetic_data.to_csv("synthetic_diabetes.csv", index=False)
+synthesizer.save("diabetes.pkl")
 
 # Loading a saved model
 # synthesizer = SingleTablePreset.load(folderName + "/diabetes.pkl")
