@@ -64,7 +64,7 @@ Open your terminal and type the command
 pip install seaborn
 ```
 
-***6. Jupyter Notebook or Jyperter Extension must be installed.***
+***6. Jupyter Notebook or Jupyter VS Code Extension must be installed.***
 
 
 if any error appears for a missing module, then please install the required module
