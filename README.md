@@ -34,11 +34,12 @@ sudo dnf install python3
 ```
 for Fedora-based Distros
 
-***2. Pandas Module must be installed.***
+***2. Pandas and numpy Module must be installed.***
 Open your terminal and type the command
 
 ```
 pip install pandas
+pip install numpy
 ```
 
 ***3. Matplotlib Module must be installed.***
@@ -63,7 +64,7 @@ Open your terminal and type the command
 pip install seaborn
 ```
 
-***6. Jupyter Notebook or Jyperter Extension must be installed.***
+***6. Jupyter Notebook or Jupyter VS Code Extension must be installed.***
 
 
 if any error appears for a missing module, then please install the required module
