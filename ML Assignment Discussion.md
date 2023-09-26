@@ -33,7 +33,7 @@ Explain your model Implementation using mathematical formulas and algorithms
 - [ ] **Lasso Regression** - #adwait
 - [ ] **Ridge Regression** - #adwait
 - [ ] **Lasso vs Ridge Insights** - #joy
-- [ ] **Logistic Regression** - #anirudh
+- [x] **Logistic Regression** - #anirudh ✅ 2023-09-22
 - [ ] **Least Squares Classification** - #pandey
 - [ ] **Logistic vs Least Squares Insights** - #pandey
 
