@@ -75,7 +75,7 @@ if any error appears for a missing module, then please install the required modu
 ```
 git clone https://github.com/AnirudhBagalkotker/Diabetes_Prediction_ML_Model.git
 ```
-2. Create a separate .py file for your task
+2. Create a separate .py or .ipynb file for your task
 3. If you Finish your Task, then create a pull request to add the file to the Repo
 
 
