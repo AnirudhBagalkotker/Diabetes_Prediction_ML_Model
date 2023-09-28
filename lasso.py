@@ -1,50 +1,65 @@
 import numpy as np
 
-# Define Lasso regression function
-def lasso_regression(X, y, alpha, num_iterations, learning_rate):
-    m, n = X.shape
-    theta = np.zeros(n)
-    
-    for iteration in range(num_iterations):
-        # Calculate predictions
-        y_pred = np.dot(X, theta)
-        
-        # Calculate the loss
-        error = y_pred - y
-        loss = np.mean(error ** 2) + alpha * np.sum(np.abs(theta))  # L1 regularization
-        
-        # Calculate the gradient
-        gradient = (1/m) * np.dot(X.T, error) + alpha * np.sign(theta)  # L1 gradient
-        
-        # Update the weights (theta) using gradient descent
-        theta -= learning_rate * gradient
-    
-    return theta
+class LassoRegression:
+    def __init__(self, learning_rate, no_of_iterations, alpha):
+        self.learning_rate = learning_rate
+        self.no_of_iterations = no_of_iterations
+        self.alpha = alpha
 
-# Lasso regression hyperparameters
-alpha = 0.01  # Regularization strength
-num_iterations = 1000
-learning_rate = 0.01
+    def fit(self, X, Y):
+        self.m, self.n = X.shape
+        self.w = np.zeros(self.n)
+        self.b = 0
+        self.X = X
+        self.Y = Y
 
-# Add a column of ones to the features for the intercept term
-X_train = np.column_stack((np.ones(len(x_tr)), x_tr.values))
+        for i in range(self.no_of_iterations):
+            self.update_weights_and_bias()
 
-# Perform Lasso regression
-lasso_theta = lasso_regression(X_train, y_tr.values, alpha, num_iterations, learning_rate)
+    def update_weights_and_bias(self):
+        Y_hat = 1 / (1 + np.exp(-(self.X.dot(self.w) + self.b)))
+        dw = (1/self.m) * np.dot(self.X.T, (Y_hat - self.Y))
+        db = (1/self.m) * np.sum(Y_hat - self.Y)
+
+        # Update the weights and bias using Lasso regularization
+        self.w = self.w - self.learning_rate * (dw + self.alpha * np.sign(self.w))
+        self.b = self.b - self.learning_rate * db
+
+    def predict(self, X):
+        Y_pred = 1 / (1 + np.exp(-(X.dot(self.w) + self.b)))
+        Y_pred = np.where(Y_pred > 0.5, 1, 0)
+        return Y_pred
+
+    def get_coefficients(self):
+        return self.w, self.b
+
+# Continue with the rest of your code (data loading, preprocessing, etc.)
+# ...
+
+# Create and train the Lasso Regression model
+lasso_regression = LassoRegression(learning_rate=0.01, no_of_iterations=1000, alpha=0.01)
+lasso_regression.fit(x_tr.values, y_tr.values)
+
+# Get and print the Lasso coefficients
+lasso_coefficients = lasso_regression.get_coefficients()
+print("Lasso Coefficients:")
+print("Coefficients (w):", lasso_coefficients[0])
+print("Bias (b):", lasso_coefficients[1])
 
 # Make predictions on the test data
-X_test = np.column_stack((np.ones(len(x_te)), x_te.values))
-y_pred = np.dot(X_test, lasso_theta)
+y_pred = lasso_regression.predict(x_te.values)
 
-# Calculate Mean Squared Error (MSE) and R-squared (R2) for evaluation
-mse = mean_squared_error(y_te, y_pred)
-r2 = r2_score(y_te, y_pred)
+# Calculate Mean Squared Error (MSE) manually
+mse = np.mean((y_te.values - y_pred) ** 2)
+
+# Calculate R-squared (R2) manually
+y_mean = np.mean(y_te.values)
+ss_total = np.sum((y_te.values - y_mean) ** 2)
+ss_residual = np.sum((y_te.values - y_pred) ** 2)
+r2 = 1 - (ss_residual / ss_total)
 
 print(f"Mean Squared Error (MSE): {mse}")
 print(f"R-squared (R2): {r2}")
 
-# Print the Lasso coefficients
-lasso_coefficients = dict(zip(['Intercept'] + list(x_tr.columns), lasso_theta))
-print("Lasso Coefficients:")
-for feature, coef in lasso_coefficients.items():
-    print(f"{feature}: {coef}")
+# Continue with the rest of your code (if any)
+# ...
