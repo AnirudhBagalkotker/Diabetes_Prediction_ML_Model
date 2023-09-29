@@ -30,11 +30,11 @@ Explain your model Implementation using mathematical formulas and algorithms
 - [ ] **Stochastic Gradient Descent** - #joy
 - [ ] **Batch Gradient Descent** - #jajra
 - [ ] **Stochastic vs Batch Insights** - #jajra
-- [ ] **Lasso Regression** - #adwait
-- [ ] **Ridge Regression** - #adwait
+- [x] **Lasso Regression** - #adwait ✅ 2023-09-28
+- [x] **Ridge Regression** - #adwait ✅ 2023-09-28
 - [ ] **Lasso vs Ridge Insights** - #joy
 - [x] **Logistic Regression** - #anirudh ✅ 2023-09-22
-- [ ] **Least Squares Classification** - #pandey
-- [ ] **Logistic vs Least Squares Insights** - #pandey
+- [x] **Least Squares Classification** - #pandey ✅ 2023-09-28
+- [x] **Logistic vs Least Squares Insights** - #pandey #pandey ✅ 2023-09-28
 
 
